@@ -86,11 +86,11 @@ footer{padding:24px 0 55px;color:#81868d;font-size:12px}
 .choice-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:20px;border-top:1px solid #ecece7;font-size:13px;font-weight:900}
 .choice-foot span:last-child{font-size:20px;line-height:1}
 .flag-stage{width:100%;padding-top:8px}
-.flag-mosaic{display:grid;grid-template-columns:1.15fr 1fr 1.15fr;align-items:stretch;gap:1px;width:100%;aspect-ratio:4.58/1;opacity:.5}
-.flag-side{height:100%;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:1px;min-width:0}
-.flag-cell{min-width:0;min-height:0;position:relative;overflow:hidden}
-.flag-cell img,.flag-korea{position:absolute;display:block;width:var(--flag-width);height:var(--flag-height);left:var(--flag-left);top:var(--flag-top);max-width:none}
-.flag-center{height:100%;min-width:0;position:relative;overflow:hidden}
+.flag-mosaic{display:grid;grid-template-columns:1.15fr 1fr 1.15fr;grid-template-rows:minmax(0,1fr);align-items:stretch;gap:1px;width:100%;aspect-ratio:4.58/1;opacity:.5}
+.flag-side{height:100%;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,minmax(0,1fr));gap:1px;min-width:0;min-height:0}
+.flag-cell{min-width:0;min-height:0;display:flex;align-items:center;justify-content:center}
+.flag-cell img,.flag-korea{display:block;width:100%;height:100%;object-fit:contain;min-width:0;min-height:0}
+.flag-center{height:100%;min-width:0;min-height:0;display:flex;align-items:center;justify-content:center}
 @media(max-width:760px){
  .landing{padding:34px 0 54px}
  .choices{gap:16px;margin-bottom:44px}
@@ -105,8 +105,6 @@ footer{padding:24px 0 55px;color:#81868d;font-size:12px}
  .choice h2{font-size:25px}
  .choice p{display:none}
  .status{font-size:9px;padding:6px 8px}
- .flag-stage{overflow:hidden}
- .flag-mosaic{width:700px;max-width:none;position:relative;left:50%;transform:translateX(-50%)}
 }
 </style><link rel="stylesheet" href="assets/theme.css">
 <script src="assets/theme.js"></script>
@@ -128,27 +126,27 @@ footer{padding:24px 0 55px;color:#81868d;font-size:12px}
 <section class="flag-stage" aria-label="Seorak Granfondo participating countries">
   <div class="flag-mosaic">
     <div class="flag-side flag-left">
-      <div class="flag-cell"><img src="assets/flags/de.png" style="--flag-width:104.44444%;--flag-height:103.33333%;--flag-left:-3.88889%;--flag-top:-2.50000%" alt="Germany"></div>
-      <div class="flag-cell"><img src="assets/flags/mx.png" style="--flag-width:105.37634%;--flag-height:103.33333%;--flag-left:-4.83871%;--flag-top:-2.50000%" alt="Mexico"></div>
-      <div class="flag-cell"><img src="assets/flags/us.png" style="--flag-width:106.28019%;--flag-height:103.33333%;--flag-left:-5.79710%;--flag-top:-2.50000%" alt="United States"></div>
-      <div class="flag-cell"><img src="assets/flags/dk.png" style="--flag-width:104.44444%;--flag-height:105.55556%;--flag-left:-3.88889%;--flag-top:-4.62963%" alt="Denmark"></div>
-      <div class="flag-cell"><img src="assets/flags/no.png" style="--flag-width:104.44444%;--flag-height:107.54717%;--flag-left:-3.88889%;--flag-top:-6.60377%" alt="Norway"></div>
-      <div class="flag-cell"><img src="assets/flags/za.png" style="--flag-width:104.44444%;--flag-height:110.57692%;--flag-left:-3.88889%;--flag-top:-9.61538%" alt="South Africa"></div>
-      <div class="flag-cell"><img src="assets/flags/ph.png" style="--flag-width:105.61798%;--flag-height:110.58824%;--flag-left:-5.05618%;--flag-top:-9.41176%" alt="Philippines"></div>
-      <div class="flag-cell"><img src="assets/flags/fi.png" style="--flag-width:105.02793%;--flag-height:115.84158%;--flag-left:-4.46927%;--flag-top:-14.85149%" alt="Finland"></div>
-      <div class="flag-cell"><img src="assets/flags/fr.png" style="--flag-width:105.37634%;--flag-height:110.37736%;--flag-left:-4.83871%;--flag-top:-9.43396%" alt="France"></div>
+      <div class="flag-cell"><img src="assets/flags/de.svg" alt="Germany"></div>
+      <div class="flag-cell"><img src="assets/flags/mx.svg" alt="Mexico"></div>
+      <div class="flag-cell"><img src="assets/flags/us.svg" alt="United States"></div>
+      <div class="flag-cell"><img src="assets/flags/dk.svg" alt="Denmark"></div>
+      <div class="flag-cell"><img src="assets/flags/no.svg" alt="Norway"></div>
+      <div class="flag-cell"><img src="assets/flags/za.svg" alt="South Africa"></div>
+      <div class="flag-cell"><img src="assets/flags/ph.svg" alt="Philippines"></div>
+      <div class="flag-cell"><img src="assets/flags/fi.svg" alt="Finland"></div>
+      <div class="flag-cell"><img src="assets/flags/fr.svg" alt="France"></div>
     </div>
-    <div class="flag-center"><img class="flag-korea" src="assets/flags/kr.png" style="--flag-width:101.93548%;--flag-height:102.46637%;--flag-left:-1.77419%;--flag-top:-2.24215%" alt="South Korea"></div>
+    <div class="flag-center"><img class="flag-korea" src="assets/flags/kr.svg" alt="South Korea"></div>
     <div class="flag-side flag-right">
-      <div class="flag-cell"><img src="assets/flags/br.png" style="--flag-width:108.64865%;--flag-height:103.33333%;--flag-left:-8.10811%;--flag-top:-2.50000%" alt="Brazil"></div>
-      <div class="flag-cell"><img src="assets/flags/ch.png" style="--flag-width:111.97605%;--flag-height:104.20168%;--flag-left:-11.37725%;--flag-top:-3.36134%" alt="Switzerland"></div>
-      <div class="flag-cell"><img src="assets/flags/es.png" style="--flag-width:111.97605%;--flag-height:106.54206%;--flag-left:-11.37725%;--flag-top:-5.60748%" alt="Spain"></div>
-      <div class="flag-cell"><img src="assets/flags/ie.png" style="--flag-width:111.97605%;--flag-height:108.57143%;--flag-left:-11.37725%;--flag-top:-7.61905%" alt="Ireland"></div>
-      <div class="flag-cell"><img src="assets/flags/gb.png" style="--flag-width:111.97605%;--flag-height:107.40741%;--flag-left:-11.37725%;--flag-top:-6.48148%" alt="United Kingdom"></div>
-      <div class="flag-cell"><img src="assets/flags/id.png" style="--flag-width:111.97605%;--flag-height:111.90476%;--flag-left:-11.37725%;--flag-top:-10.71429%" alt="Indonesia"></div>
-      <div class="flag-cell"><img src="assets/flags/ca.png" style="--flag-width:106.79612%;--flag-height:110.37736%;--flag-left:-6.31068%;--flag-top:-9.43396%" alt="Canada"></div>
-      <div class="flag-cell"><img src="assets/flags/cn.png" style="--flag-width:109.23913%;--flag-height:110.37736%;--flag-left:-8.69565%;--flag-top:-9.43396%" alt="China"></div>
-      <div class="flag-cell"><img src="assets/flags/zm.png" style="--flag-width:112.65060%;--flag-height:110.37736%;--flag-left:-12.04819%;--flag-top:-9.43396%" alt="Zambia"></div>
+      <div class="flag-cell"><img src="assets/flags/br.svg" alt="Brazil"></div>
+      <div class="flag-cell"><img src="assets/flags/ch.svg" alt="Switzerland"></div>
+      <div class="flag-cell"><img src="assets/flags/es.svg" alt="Spain"></div>
+      <div class="flag-cell"><img src="assets/flags/ie.svg" alt="Ireland"></div>
+      <div class="flag-cell"><img src="assets/flags/gb.svg" alt="United Kingdom"></div>
+      <div class="flag-cell"><img src="assets/flags/id.svg" alt="Indonesia"></div>
+      <div class="flag-cell"><img src="assets/flags/ca.svg" alt="Canada"></div>
+      <div class="flag-cell"><img src="assets/flags/cn.svg" alt="China"></div>
+      <div class="flag-cell"><img src="assets/flags/zm.svg" alt="Zambia"></div>
     </div>
   </div>
 </section>
