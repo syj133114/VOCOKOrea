@@ -1,0 +1,45 @@
+:root { color-scheme: light; }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #edf0f5;
+  --muted: #a9b1be;
+  --paper: #111419;
+  --card: #1b2028;
+  --line: #363e4b;
+  --red: #f28383;
+  --blue: #91b8f4;
+  --green: #86d5ac;
+  --amber: #edc17b;
+  --shadow: 0 16px 45px rgba(0,0,0,.3);
+}
+.theme-toggle {
+  flex-shrink: 0;
+  margin-left: auto;
+  min-height: 42px;
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.theme-toggle:hover { border-color: var(--blue); }
+.theme-toggle:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+:root[data-theme="dark"] header { background: rgba(17,20,25,.94); border-color: var(--line); }
+:root[data-theme="dark"] :is(.landing,.choice,.card,.panel,.hero-panel,.modalbox,.eyebrow,.pill,.btn.secondary,.emailrow input) { background: var(--card); color: var(--ink); }
+:root[data-theme="dark"] .landing { background: var(--paper); }
+:root[data-theme="dark"] :is(.navlinks,.place,.back,.legend-row,.note,.info-strip p,.sourcebox p,.helpbox p,.small,.prototype,footer) { color: var(--muted); }
+:root[data-theme="dark"] .navlinks a:hover { color: var(--ink); }
+:root[data-theme="dark"] :is(.row,.meta-row,.stat,.choice-foot,.emailrow input) { border-color: var(--line); }
+:root[data-theme="dark"] :is(.note,.summary span,.info-strip,.sourcebox,.close,.status) { background: #272e39; color: #c1c9d5; }
+:root[data-theme="dark"] .year-nav { background: rgba(27,32,40,.95); }
+:root[data-theme="dark"] .year-btn { color: var(--muted); }
+:root[data-theme="dark"] :is(.btn,.year-btn.active) { background: #dce7f7; color: #151c26; }
+:root[data-theme="dark"] .btn.secondary { background: var(--card); color: var(--ink); }
+:root[data-theme="dark"] .status.returning { background: #203b30; color: var(--green); }
+:root[data-theme="dark"] :is(.status.tba,.status.unverified,.warning) { background: #3b3021; color: var(--amber); }
+:root[data-theme="dark"] :is(.status.archive,.helpbox) { background: #253347; color: var(--blue); }
+:root[data-theme="dark"] input::placeholder { color: var(--muted); }
+@media (max-width: 520px) { .theme-toggle { padding: 8px 11px; font-size: 12px; } }
