@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VOCO Korea — Event Archive</title>
+<style>
+:root{
+  --ink:#121417; --muted:#70757d; --paper:#f4f3ef; --card:#fff; --line:#deded8;
+  --red:#cd4c4c; --blue:#3b64a1; --green:#2f7a5a; --amber:#9b6c20;
+  --shadow:0 16px 45px rgba(18,20,23,.07); --radius:26px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+.wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(244,243,239,.91);backdrop-filter:blur(14px);border-bottom:1px solid rgba(18,20,23,.06)}
+nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-weight:900;letter-spacing:-.04em;font-size:21px}
+.brand .red{color:var(--red)} .brand .blue{color:var(--blue)}
+.navlinks{display:flex;align-items:center;gap:24px;color:#555b64;font-size:14px}
+.hero{padding:72px 0 28px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:850}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--blue)}
+h1{font-size:clamp(58px,8.5vw,108px);line-height:.9;letter-spacing:-.075em;margin:18px 0 21px}
+h1 span{color:var(--blue)}
+.lead{max-width:760px;color:var(--muted);font-size:18px;line-height:1.65;margin:0}
+.archive-section{padding:32px 0 86px}
+.year-nav{display:flex;gap:10px;align-items:center;margin:10px 0 26px;position:sticky;top:88px;z-index:30;width:max-content;padding:6px;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);box-shadow:0 8px 26px rgba(18,20,23,.06)}
+.year-btn{border:0;background:transparent;color:#737981;border-radius:12px;padding:11px 18px;cursor:pointer;font-weight:900;font-size:14px}
+.year-btn.active{background:var(--ink);color:#fff}
+.year-panel{display:none}
+.year-panel.active{display:block;animation:fade .18s ease}
+@keyframes fade{from{opacity:.2;transform:translateY(4px)}to{opacity:1;transform:none}}
+.year-head{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:24px}
+.year-head h2{font-size:46px;letter-spacing:-.055em;margin:0}
+.year-head p{margin:0;max-width:575px;color:var(--muted);line-height:1.55}
+.summary{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.summary span{padding:7px 10px;background:#e9e8e2;border-radius:999px;color:#666b72;font-size:11px;font-weight:850}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{min-height:380px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:25px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;box-shadow:0 8px 24px rgba(18,20,23,.035);transition:.2s ease}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.card:before{content:"";position:absolute;width:165px;height:165px;border:3px solid var(--blue);border-radius:50%;right:-76px;top:-76px;opacity:.075;box-shadow:0 0 0 32px var(--blue),0 0 0 64px var(--blue)}
+.card-top,.card-bottom{position:relative;z-index:1}
+.status{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;background:#f1f1ed;color:#555b63}
+.status.returning{background:#e8f3ed;color:var(--green)}
+.status.tba{background:#f7f0e2;color:var(--amber)}
+.status.archive{background:#edf1f6;color:var(--blue)}
+.status i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.place{margin-top:18px;font-size:12px;color:#777c84;font-weight:850;text-transform:uppercase;letter-spacing:.07em}
+.card h3{font-size:27px;letter-spacing:-.045em;line-height:1.06;margin:8px 0 12px}
+.meta{display:grid;gap:8px;margin-top:18px}
+.row{display:flex;justify-content:space-between;gap:18px;border-top:1px solid #ecece7;padding-top:9px;font-size:13px}
+.row span{color:var(--muted)}
+.row b{text-align:right}
+.note{margin-top:16px;background:#f6f6f2;border-radius:14px;padding:12px 13px;font-size:12px;line-height:1.48;color:#60666e}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:23px}
+.btn{min-height:45px;padding:0 16px;border-radius:14px;border:1px solid var(--ink);background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:850;cursor:pointer}
+.btn.secondary{background:#fff;color:var(--ink);border-color:var(--line)}
+.prototype{font-size:11px;color:#8a8f96;margin-top:9px}
+.info-strip{margin-top:34px;border:1px solid var(--line);background:#ecebe6;border-radius:22px;padding:20px;display:flex;justify-content:space-between;gap:24px}
+.info-strip strong{font-size:14px}
+.info-strip p{margin:4px 0 0;color:#686e76;font-size:12px;line-height:1.5;max-width:760px}
+footer{padding:24px 0 55px;color:#81868d;font-size:12px}
+.modal{position:fixed;inset:0;background:rgba(15,17,20,.55);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modalbox{width:min(500px,100%);background:#fff;border-radius:24px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.25)}
+.modalbox h3{margin:0 0 8px;font-size:28px;letter-spacing:-.04em}
+.modalbox p{margin:0 0 20px;color:var(--muted);line-height:1.55}
+.close{float:right;border:0;background:#f0f0ec;border-radius:10px;width:36px;height:36px;cursor:pointer;font-size:18px}
+.emailrow{display:flex;gap:8px}
+.emailrow input{flex:1;min-width:0;height:44px;border:1px solid #d8d9d6;border-radius:12px;padding:0 12px;background:#fff}
+.small{font-size:11px;color:#7c8188;margin-top:8px}
+@media(max-width:960px){.cards{grid-template-columns:1fr 1fr}.navlinks{display:none}}
+@media(max-width:640px){
+ .wrap{width:min(100% - 24px,1180px)} .cards{grid-template-columns:1fr}
+ .year-head{display:block}.year-head p{margin-top:10px}.year-nav{top:82px}
+ .info-strip{display:block}.emailrow{display:grid}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+<a class="brand" href="index.html"><span class="red">VOCO</span> <span class="blue">Korea</span></a>
+<div class="navlinks"><a href="#events">Events</a><a href="event-seorak.html">Race Concierge</a></div>
+</nav></div></header>
+
+<main><div class="wrap">
+<section class="hero">
+ <div class="eyebrow"><span class="dot"></span> Korea cycling event archive</div>
+ <h1>Find races<br>by <span>year.</span></h1>
+ <p class="lead">Browse event information by year. The 2026 tab is the archive, while the 2027 tab shows only 2027 status information and marks unknown details as TBA.</p>
+</section>
+
+<section class="archive-section" id="events">
+ <div class="year-nav" role="tablist" aria-label="Event year">
+  <button class="year-btn" data-year="2026">2026</button>
+  <button class="year-btn active" data-year="2027">2027</button>
+ </div>
+
+ <div class="year-panel" id="year-2026">
+  <div class="year-head">
+   <div>
+    <h2>2026 Events</h2>
+    <div class="summary"><span>Archive</span><span>6 selected events</span></div>
+   </div>
+   <p>Historical event information collected from the official organizer or registration pages used in this MVP. No unverified result or attendance claims are added.</p>
+  </div>
+  <div class="cards">
+<article class="card">
+ <div class="card-top">
+  <div class="status archive"><i></i>2026 event</div>
+  <div class="place">Inje · Gangwon-do</div>
+  <h3>SENA Seorak Granfondo</h3>
+  <div class="meta">
+   <div class="row"><span>2026 date</span><b>Jun 20, 2026</b></div>
+   <div class="row"><span>Course</span><b>208 km / 105 km</b></div>
+  </div>
+  <div class="note">Verified 2026 event date and course reference.</div>
+ </div>
+ <div class="card-bottom"><div class="btnrow"><a class="btn" href="event-seorak.html">View details</a></div></div>
+</article>
+
+
+<article class="card">
+ <div class="card-top">
+  <div class="status archive"><i></i>2026 event</div>
+  <div class="place">Yecheon · Gyeongsangbuk-do</div>
+  <h3>Yecheon Jeosuryung Granfondo</h3>
+  <div class="meta">
+   <div class="row"><span>2026 date</span><b>Apr 18, 2026</b></div>
+   <div class="row"><span>Course</span><b>103.6 km / 93.3 km</b></div>
+  </div>
+  <div class="note">Verified 2026 event reference from XCWORKS.</div>
+ </div>
+ <div class="card-bottom"><div class="btnrow"><button class="btn secondary" data-open="archive">Archive info</button></div></div>
+</article>
+
+
+<article class="card">
+ <div class="card-top">
+  <div class="status archive"><i></i>2026 event</div>
+  <div class="place">Gapyeong · Gyeonggi-do</div>
+  <h3>Gapyeong Jarasum Granfondo</h3>
+  <div class="meta">
+   <div class="row"><span>2026 date</span><b>May 9, 2026</b></div>
+   <div class="row"><span>Course</span><b>Course details not shown</b></div>
+  </div>
+  <div class="note">Verified 2026 event date reference from XCWORKS.</div>
+ </div>
+ <div class="card-bottom"><div class="btnrow"><button class="btn secondary" data-open="archive">Archive info</button></div></div>
+</article>
+
+
+<article class="card">
+ <div class="card-top">
+  <div class="status archive"><i></i>2026 event</div>
+  <div class="place">Hongcheon · Gangwon-do</div>
+  <h3>Hongcheon Classic Granfondo</h3>
+  <div class="meta">
+   <div class="row"><span>2026 date</span><b>Apr 25, 2026</b></div>
+   <div class="row"><span>Course</span><b>122 km / 79 km</b></div>
+  </div>
+  <div class="note">Verified 2026 event and registration reference from Speed Agency.</div>
+ </div>
+ <div class="card-bottom"><div class="btnrow"><button class="btn secondary" data-open="archive">Archive info</button></div></div>
+</article>
+
+
+<article class="card">
+ <div class="card-top">
+  <div class="status archive"><i></i>2026 event</div>
+  <div class="place">Mungyeong · Gyeongsangbuk-do</div>
+  <h3>Mungyeong Saejae Granfondo</h3>
+  <div class="meta">
+   <div class="row"><span>2026 date</span><b>Sep 5, 2026</b></div>
+   <div class="row"><span>Course</span><b>152.5 km / 107.6 km</b></div>
+  </div>
+  <div class="note">Verified 2026 event and registration reference from Speed Agency.</div>
+ </div>
+ <div class="card-bottom"><div class="btnrow"><button class="btn secondary" data-open="archive">Archive info</button></div></div>
+</article>
+
+
+<article class="card">
+ <div class="card-top">
+  <div class="status archive"><i></i>2026 event</div>
+  <div class="place">Chungju · Chungcheongbuk-do</div>
+  <h3>Santini Chungju Granfondo</h3>
+  <div class="meta">
+   <div class="row"><span>2026 date</span><b>Oct 3, 2026</b></div>
+   <div class="row"><span>Course</span><b>122.2 km / 96.9 km</b></div>
+  </div>
+  <div class="note">Verified 2026 event reference from XCWORKS.</div>
+ </div>
+ <div class="card-bottom"><div class="btnrow"><button class="btn secondary" data-open="archive">Archive info</button></div></div>
+</article>
+</div>
+ </div>
+
+
+ <div class="year-panel active" id="year-2027">
+  <div class="year-head">
+   <div>
+    <h2>2027 Upcoming</h2>
+    <div class="summary"><span>Watchlist</span><span>2 organizer-confirmed returns</span><span>4 schedules TBA</span></div>
+   </div>
+   <p>Only 2027 information is shown here. Any date, course, or registration detail that has not yet been officially verified is marked TBA.</p>
+  </div>
+  <div class="cards">
+
+<article class="card">
+ <div class="card-top">
+  <div class="status returning"><i></i>Returning in 2027</div>
+  <div class="place">Chungju · Chungcheongbuk-do</div>
+  <h3>Santini Chungju Granfondo</h3>
+  <div class="meta">
+   <div class="row"><span>Date</span><b>TBA</b></div>
+   <div class="row"><span>Course</span><b>TBA</b></div>
+   <div class="row"><span>Registration</span><b>TBA</b></div>
+  </div>
+  <div class="note">The organizer has stated that the event will return in 2027. Exact schedule and race details are still TBA.</div>
+ </div>
+ <div class="card-bottom">
+  <div class="btnrow"><button class="btn" data-open="notify">Get updates</button><button class="btn secondary" data-open="notify">Notify me</button></div>
+  <div class="prototype">Prototype: notification form does not submit data yet.</div>
+ </div>
+</article>
+
+<article class="card">
+ <div class="card-top">
+  <div class="status returning"><i></i>Returning in 2027</div>
+  <div class="place">Yecheon · Gyeongsangbuk-do</div>
+  <h3>Yecheon Jeosuryung Granfondo</h3>
+  <div class="meta">
+   <div class="row"><span>Date</span><b>TBA</b></div>
+   <div class="row"><span>Course</span><b>TBA</b></div>
+   <div class="row"><span>Registration</span><b>TBA</b></div>
+  </div>
+  <div class="note">The organizer has stated that the event will return in 2027. Exact schedule and race details are still TBA.</div>
+ </div>
+ <div class="card-bottom">
+  <div class="btnrow"><button class="btn" data-open="notify">Get updates</button><button class="btn secondary" data-open="notify">Notify me</button></div>
+  <div class="prototype">Prototype: notification form does not submit data yet.</div>
+ </div>
+</article>
+
+<article class="card">
+ <div class="card-top">
+  <div class="status tba"><i></i>2027 Schedule TBA</div>
+  <div class="place">Inje · Gangwon-do</div>
+  <h3>SENA Seorak Granfondo</h3>
+  <div class="meta">
+   <div class="row"><span>Date</span><b>TBA</b></div>
+   <div class="row"><span>Course</span><b>TBA</b></div>
+   <div class="row"><span>Registration</span><b>TBA</b></div>
+  </div>
+  <div class="note">The 2027 schedule has not yet been officially verified.</div>
+ </div>
+ <div class="card-bottom">
+  <div class="btnrow"><a class="btn" href="event-seorak.html">View details</a><button class="btn secondary" data-open="notify">Notify me</button></div>
+  <div class="prototype">Prototype: notification form does not submit data yet.</div>
+ </div>
+</article>
+
+<article class="card">
+ <div class="card-top">
+  <div class="status tba"><i></i>2027 Schedule TBA</div>
+  <div class="place">Gapyeong · Gyeonggi-do</div>
+  <h3>Gapyeong Jarasum Granfondo</h3>
+  <div class="meta">
+   <div class="row"><span>Date</span><b>TBA</b></div>
+   <div class="row"><span>Course</span><b>TBA</b></div>
+   <div class="row"><span>Registration</span><b>TBA</b></div>
+  </div>
+  <div class="note">The 2027 schedule has not yet been officially verified.</div>
+ </div>
+ <div class="card-bottom">
+  <div class="btnrow"><button class="btn" data-open="notify">Get updates</button><button class="btn secondary" data-open="notify">Notify me</button></div>
+  <div class="prototype">Prototype: notification form does not submit data yet.</div>
+ </div>
+</article>
+
+<article class="card">
+ <div class="card-top">
+  <div class="status tba"><i></i>2027 Schedule TBA</div>
+  <div class="place">Hongcheon · Gangwon-do</div>
+  <h3>Hongcheon Classic Granfondo</h3>
+  <div class="meta">
+   <div class="row"><span>Date</span><b>TBA</b></div>
+   <div class="row"><span>Course</span><b>TBA</b></div>
+   <div class="row"><span>Registration</span><b>TBA</b></div>
+  </div>
+  <div class="note">The 2027 schedule has not yet been officially verified.</div>
+ </div>
+ <div class="card-bottom">
+  <div class="btnrow"><button class="btn" data-open="notify">Get updates</button><button class="btn secondary" data-open="notify">Notify me</button></div>
+  <div class="prototype">Prototype: notification form does not submit data yet.</div>
+ </div>
+</article>
+
+<article class="card">
+ <div class="card-top">
+  <div class="status tba"><i></i>2027 Schedule TBA</div>
+  <div class="place">Mungyeong · Gyeongsangbuk-do</div>
+  <h3>Mungyeong Saejae Granfondo</h3>
+  <div class="meta">
+   <div class="row"><span>Date</span><b>TBA</b></div>
+   <div class="row"><span>Course</span><b>TBA</b></div>
+   <div class="row"><span>Registration</span><b>TBA</b></div>
+  </div>
+  <div class="note">The 2027 schedule has not yet been officially verified.</div>
+ </div>
+ <div class="card-bottom">
+  <div class="btnrow"><button class="btn" data-open="notify">Get updates</button><button class="btn secondary" data-open="notify">Notify me</button></div>
+  <div class="prototype">Prototype: notification form does not submit data yet.</div>
+ </div>
+</article>
+
+  </div>
+ </div>
+
+ <div class="info-strip">
+  <div><strong>Year-based structure</strong><p>Past years become a searchable archive, while the newest year becomes the update and lead-generation page. Later, 2028 can be added with the same tab structure.</p></div>
+ </div>
+</section>
+</div></main>
+
+<footer><div class="wrap">VOCO Korea prototype · Year-based race archive</div></footer>
+
+<div class="modal" id="notify"><div class="modalbox">
+ <button class="close" aria-label="Close">×</button>
+ <h3>Get 2027 race updates</h3>
+ <p>This is the prototype lead-capture flow. It is not connected to a database yet.</p>
+ <div class="emailrow"><input type="email" placeholder="you@example.com"><button class="btn" id="fakeSubmit">Notify me</button></div>
+ <div class="small" id="formMsg">Prototype only — no information is submitted or stored.</div>
+</div></div>
+
+<div class="modal" id="archive"><div class="modalbox">
+ <button class="close" aria-label="Close">×</button>
+ <h3>2026 archive item</h3>
+ <p>Only the event information already verified for this MVP is shown. Additional detail pages can be added race by race.</p>
+</div></div>
+
+<script>
+const yearButtons=[...document.querySelectorAll('.year-btn')];
+const yearPanels=[...document.querySelectorAll('.year-panel')];
+yearButtons.forEach(btn=>btn.addEventListener('click',()=>{
+  const year=btn.dataset.year;
+  yearButtons.forEach(b=>b.classList.toggle('active',b===btn));
+  yearPanels.forEach(p=>p.classList.toggle('active',p.id==='year-'+year));
+  history.replaceState(null,'','#'+year);
+}));
+
+function openModal(id){document.getElementById(id).classList.add('open')}
+document.querySelectorAll('[data-open="notify"]').forEach(el=>el.addEventListener('click',()=>openModal('notify')));
+document.querySelectorAll('[data-open="archive"]').forEach(el=>el.addEventListener('click',()=>openModal('archive')));
+document.querySelectorAll('.modal').forEach(m=>{
+  m.addEventListener('click',e=>{if(e.target===m) m.classList.remove('open')});
+  m.querySelectorAll('.close').forEach(c=>c.addEventListener('click',()=>m.classList.remove('open')));
+});
+document.getElementById('fakeSubmit').addEventListener('click',()=>{
+ document.getElementById('formMsg').textContent='Prototype only — connect this to your email or CRM later.';
+});
+if(location.hash==='#2026') document.querySelector('[data-year="2026"]').click();
+</script>
+</body></html>

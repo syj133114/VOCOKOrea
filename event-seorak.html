@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Seorak Granfondo — VOCO Korea</title><style>
+:root{
+  --ink:#121417; --muted:#70757d; --paper:#f4f3ef; --card:#fff; --line:#deded8;
+  --red:#cd4c4c; --blue:#3b64a1; --green:#2f7a5a; --amber:#9b6c20;
+  --shadow:0 16px 45px rgba(18,20,23,.07); --radius:26px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+.wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(244,243,239,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(18,20,23,.06)}
+nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-weight:900;letter-spacing:-.04em;font-size:21px}
+.brand .red{color:var(--red)} .brand .blue{color:var(--blue)}
+.navlinks{display:flex;align-items:center;gap:24px;color:#555b64;font-size:14px}
+.navlinks a:hover{color:#111}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;background:var(--amber)}
+.hero{padding:76px 0 46px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end}
+h1{margin:18px 0 22px;font-size:clamp(58px,8.7vw,110px);line-height:.9;letter-spacing:-.075em}
+h1 span{color:var(--blue)}
+.lead{font-size:19px;line-height:1.65;color:var(--muted);max-width:760px;margin:0}
+.hero-panel{border:1px solid var(--line);background:#fff;border-radius:28px;padding:28px;box-shadow:var(--shadow)}
+.hero-panel strong{font-size:18px;display:block;margin-bottom:8px}
+.hero-panel p{margin:0;color:var(--muted);line-height:1.55}
+.status-legend{display:grid;gap:10px;margin-top:22px}
+.legend-row{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#555b64}
+.legend-row b{color:var(--ink)}
+.swatch{width:11px;height:11px;margin-top:4px;border-radius:50%;flex:0 0 auto}
+.swatch.green{background:var(--green)} .swatch.amber{background:var(--amber)}
+.section{padding:42px 0 86px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:28px}
+.section-head h2{font-size:45px;letter-spacing:-.055em;margin:0}
+.section-head p{max-width:570px;color:var(--muted);line-height:1.6;margin:0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{min-height:375px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:25px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 8px 24px rgba(18,20,23,.035);transition:.2s ease;overflow:hidden;position:relative}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.card:before{content:"";position:absolute;width:170px;height:170px;border:3px solid var(--blue);border-radius:50%;right:-78px;top:-78px;opacity:.08;box-shadow:0 0 0 32px var(--blue),0 0 0 64px var(--blue)}
+.card-top,.card-bottom{position:relative;z-index:1}
+.status{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:900;letter-spacing:.045em;text-transform:uppercase;background:#f2f2ee}
+.status.returning{background:#e9f3ee;color:var(--green)}
+.status.unverified{background:#f7f0e2;color:var(--amber)}
+.status .mini-dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+.place{margin-top:18px;font-size:12px;color:#747a82;font-weight:800;text-transform:uppercase;letter-spacing:.07em}
+.card h3{font-size:28px;letter-spacing:-.045em;line-height:1.05;margin:8px 0 12px}
+.meta{display:grid;gap:9px;margin:18px 0 0}
+.meta-row{display:flex;justify-content:space-between;gap:18px;border-top:1px solid #ecece7;padding-top:9px;font-size:13px}
+.meta-row span{color:var(--muted)}
+.meta-row b{text-align:right}
+.note{margin-top:17px;border-radius:14px;background:#f6f6f2;padding:12px 13px;font-size:12px;line-height:1.45;color:#5f656e}
+.card-bottom{margin-top:24px}
+.btn{min-height:46px;padding:0 17px;border-radius:14px;border:1px solid var(--ink);background:var(--ink);color:white;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:850;cursor:pointer}
+.btn.secondary{background:#fff;color:var(--ink);border-color:var(--line)}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap}
+.prototype{font-size:11px;color:#8a8e95;margin-top:9px}
+.insight{background:#17191d;color:#fff;border-radius:32px;padding:42px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.insight h2{font-size:42px;line-height:1.02;letter-spacing:-.055em;margin:0}
+.insight p{color:#c8cbd0;line-height:1.65;margin:0}
+.friction{display:grid;gap:10px;margin-top:22px}
+.friction div{padding:13px 15px;border-radius:14px;background:#24272d;font-size:13px;color:#e5e7eb}
+.friction b{color:#fff}
+.sourcebox{margin-top:24px;padding:20px;border:1px solid var(--line);border-radius:20px;background:#eeede8}
+.sourcebox h4{margin:0 0 10px;font-size:14px}
+.sourcebox p{margin:6px 0;color:#666d76;font-size:12px;line-height:1.5}
+.sourcebox a{text-decoration:underline;text-underline-offset:2px}
+footer{padding:24px 0 55px;color:#81868d;font-size:12px}
+.detail-hero{padding:70px 0 36px}
+.back{font-size:13px;color:#626871}
+.detail-title{font-size:clamp(54px,8vw,95px);line-height:.9;letter-spacing:-.075em;margin:22px 0}
+.detail-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.panel{border:1px solid var(--line);background:#fff;border-radius:26px;padding:27px}
+.panel h2{font-size:30px;letter-spacing:-.045em;margin:0 0 18px}
+.bigstat{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{border:1px solid #ecece7;border-radius:18px;padding:18px}
+.stat span{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}
+.stat b{font-size:21px}
+.warning{margin-top:16px;padding:14px 15px;border-radius:15px;background:#f7f0e2;color:#77531d;font-size:13px;line-height:1.55}
+.steps{display:grid;gap:12px}
+.step{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start}
+.stepno{width:36px;height:36px;border-radius:12px;background:#17191d;color:#fff;display:grid;place-items:center;font-weight:900}
+.step h4{margin:2px 0 5px;font-size:15px}
+.step p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+.helpbox{margin-top:18px;border-radius:22px;background:#eef2f7;padding:22px}
+.helpbox h3{margin:0 0 7px;font-size:22px}
+.helpbox p{margin:0 0 15px;color:#5f6670;line-height:1.55;font-size:14px}
+.emailrow{display:flex;gap:8px}
+.emailrow input{flex:1;min-width:0;height:44px;border:1px solid #d8d9d6;border-radius:12px;padding:0 12px;background:#fff}
+.small{font-size:11px;color:#7c8188;margin-top:8px}
+.modal{position:fixed;inset:0;background:rgba(15,17,20,.55);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modalbox{width:min(500px,100%);background:#fff;border-radius:24px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.25)}
+.modalbox h3{margin:0 0 8px;font-size:28px;letter-spacing:-.04em}
+.modalbox p{margin:0 0 20px;color:var(--muted);line-height:1.55}
+.close{float:right;border:0;background:#f0f0ec;border-radius:10px;width:36px;height:36px;cursor:pointer;font-size:18px}
+.landing{min-height:calc(100vh - 74px);display:grid;place-items:center;padding:58px 0 80px}
+.choicegrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:34px}
+.choice{min-height:400px;border:1px solid var(--line);background:#fff;border-radius:30px;padding:32px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow)}
+.choice h2{font-size:49px;letter-spacing:-.055em;margin:13px 0 10px}
+.choice p{color:var(--muted);line-height:1.6;max-width:470px}
+@media(max-width:960px){.hero-grid,.detail-grid,.insight{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.navlinks{display:none}}
+@media(max-width:760px){.choicegrid{grid-template-columns:1fr}}
+@media(max-width:640px){.wrap{width:min(100% - 24px,1180px)}.cards{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:12px}.card{min-height:340px}.insight{padding:28px}.emailrow{display:grid}}
+</style></head>
+<body>
+<header><div class="wrap"><nav>
+<a class="brand" href="race-support.html"><span class="red">VOCO</span> <span class="blue">Korea</span></a>
+<div class="navlinks"><a href="race-support.html">2027 Events</a><a href="#support">Race Concierge</a><a href="#sources">Sources</a></div>
+</nav></div></header>
+<main class="wrap">
+<section class="detail-hero">
+<a class="back" href="race-support.html">← Back to 2027 event watchlist</a>
+<div class="pill" style="margin-top:22px"><span class="dot"></span> 2027 date not yet verified</div>
+<h1 class="detail-title">SENA Seorak<br><span>Granfondo</span></h1>
+<p class="lead">Inje, Gangwon-do. This page uses verified 2026 information as reference and does not present an unannounced 2027 schedule as fact.</p>
+</section>
+<section class="section" style="padding-top:16px">
+<div class="detail-grid">
+<div class="panel">
+<h2>2026 reference</h2>
+<div class="bigstat">
+<div class="stat"><span>Date</span><b>Jun 20, 2026</b></div>
+<div class="stat"><span>Location</span><b>Inje, Gangwon-do</b></div>
+<div class="stat"><span>Granfondo</span><b>208 km</b></div>
+<div class="stat"><span>Mediofondo</span><b>105 km</b></div>
+</div>
+<div class="warning"><b>Important:</b> These are 2026 reference details. A 2027 race date or course is not shown here until it can be verified from an official source.</div>
+<div class="sourcebox" id="sources" style="margin-top:20px">
+<h4>Source used for the 2026 reference</h4>
+<p>SENA newsroom, published Jun 5, 2026: <a href="https://www.sena.co.kr/news/?keyword=2026&mod=document&uid=208" target="_blank" rel="noreferrer">2026 SENA Seorak Granfondo event announcement</a>.</p>
+</div></div>
+<aside class="panel" id="support">
+<h2>How VOCO can help</h2>
+<div class="steps">
+<div class="step"><div class="stepno">1</div><div><h4>Watch the official announcement</h4><p>Track the organizer’s 2027 date and registration opening instead of estimating it from past years.</p></div></div>
+<div class="step"><div class="stepno">2</div><div><h4>Translate the actual race process</h4><p>Explain the official notice, application steps and practical requirements once the 2027 materials are published.</p></div></div>
+<div class="step"><div class="stepno">3</div><div><h4>Connect race-weekend logistics</h4><p>Help the rider understand transport, stays and bike movement using verified local information.</p></div></div>
+</div>
+<div class="helpbox">
+<h3>Notify me when 2027 opens</h3>
+<p>This prototype shows the customer flow before a real email or CRM integration is connected.</p>
+<div class="emailrow"><input type="email" placeholder="you@example.com"><button class="btn" id="fakeSubmit">Notify me</button></div>
+<div class="small" id="formMsg">Prototype only — no information is submitted or stored.</div>
+</div>
+</aside></div></section></main>
+<footer><div class="wrap">VOCO Korea prototype · Verified-information-first event page</div></footer>
+<script>
+document.getElementById('fakeSubmit').addEventListener('click',()=>{
+  document.getElementById('formMsg').textContent='Prototype only — connect this button to your email/CRM later.';
+});
+</script></body></html>
