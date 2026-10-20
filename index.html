@@ -87,13 +87,20 @@ footer{padding:24px 0 55px;color:#81868d;font-size:12px}
 .choice-foot span:last-child{font-size:20px;line-height:1}
 /* All surrounding flags share a 1.8:1 box; Korea is three times taller. */
 .flag-stage{width:100%;padding-top:8px;container-type:inline-size}
-.flag-mosaic{--flag-height:calc((100cqw - 6px) / 15.3);display:flex;align-items:center;justify-content:center;gap:1px;width:100%;opacity:.5}
+.flag-mosaic{--flag-height:calc((100cqw - 6px) / 15.3);display:flex;align-items:center;justify-content:center;gap:1px;width:100%}
 .flag-side{display:flex;flex-direction:column;gap:1px;flex-shrink:0}
 .flag-row{display:flex;align-items:center;justify-content:center;gap:1px}
 .flag-cell{flex-shrink:0;width:calc(var(--flag-height) * 1.8);height:var(--flag-height)}
-.flag-cell img{display:block;width:100%;height:100%;object-fit:fill}
+.flag-cell img{display:block;width:100%;height:100%;object-fit:fill;opacity:.5}
 .flag-center{flex-shrink:0}
-.flag-korea{display:block;height:calc(var(--flag-height) * 3);width:auto;max-width:none}
+.flag-korea{display:block;height:calc(var(--flag-height) * 3);width:auto;max-width:none;opacity:.5}
+:root:not([data-theme="dark"]) :is(.flag-cell,.flag-row,.flag-center){position:relative}
+:root:not([data-theme="dark"]) .flag-cell + .flag-cell::before{content:"";position:absolute;left:-1px;top:0;width:1px;height:100%;background:#000}
+:root:not([data-theme="dark"]) .flag-row + .flag-row::before{content:"";position:absolute;left:0;top:-1px;width:100%;height:1px;background:#000}
+:root:not([data-theme="dark"]) .flag-center{align-self:stretch;display:flex;align-items:center}
+:root:not([data-theme="dark"]) .flag-center::before,:root:not([data-theme="dark"]) .flag-center::after{content:"";position:absolute;top:0;width:1px;height:100%;background:#000}
+:root:not([data-theme="dark"]) .flag-center::before{left:-1px}
+:root:not([data-theme="dark"]) .flag-center::after{right:-1px}
 @media(max-width:760px){
  .landing{padding:34px 0 54px}
  .choices{gap:16px;margin-bottom:44px}
