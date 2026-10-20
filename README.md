@@ -8,4 +8,4 @@ All three pages include a dark/white mode button in the header. The initial them
 
 To preview locally, run `python3 -m http.server 8000` and open http://localhost:8000.
 
-Flag artwork: SVG country flags from [FlagCDN](https://flagcdn.com/), displayed at their original aspect ratios.
+Flag artwork: SVG country flags from [FlagCDN](https://flagcdn.com/), displayed in equal-size rectangles, with surrounding flags one-third the height of the Korean flag.
